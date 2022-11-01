@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
-import { getContacts } from '../../../redux/contactsSlice';
-import { addContact } from 'redux/contactsOperation';
+import { getContacts } from '../../../redux/contacts/contactsSlice';
+import { addContact } from 'redux/contacts/contactsOperation';
 import { useSelector, useDispatch } from 'react-redux';
 import css from '../ContactForm/ContactForm.module.css'
 import { Loader } from '../Loader/Loader';

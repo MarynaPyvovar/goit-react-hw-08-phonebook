@@ -39,9 +39,6 @@ export const contactsSlice = createSlice({
       state.addingLoader = false;
       state.error = payload;
     },
-    // [removeContact.pending](state) {
-    //   state.deletingLoader = true;
-    // },
     [removeContact.fulfilled](state, { payload }) {
       state.error = null;
       state.items = state.items.filter(item => item.id !== payload);

@@ -17,3 +17,20 @@ export const Loader = () => {
 />
   </div>
 }
+
+export const LoaderRoute = () => {
+  return <div className={css.loaderRouter}>
+    <ThreeCircles
+  height="80"
+  width="80"
+  color="skyblue"
+  wrapperStyle={{}}
+  wrapperClass=""
+  visible={true}
+  ariaLabel="three-circles-rotating"
+  outerCircleColor=""
+  innerCircleColor=""
+  middleCircleColor=""
+/>
+  </div>
+}

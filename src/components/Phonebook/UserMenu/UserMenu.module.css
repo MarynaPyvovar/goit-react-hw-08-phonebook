@@ -1,0 +1,36 @@
+.userWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 20px;
+}
+
+.menuWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.link {
+    display: block;
+    width: 80px;
+    padding: 5px;
+    margin-left: 35px;
+    margin-right: 35px;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    border: 2px solid skyblue;
+    border-radius: 10px;
+}
+
+.link:hover, .link:focus, .link.active {
+    background-color: skyblue;
+}
+
+.greeting {
+    margin: 0;
+}
