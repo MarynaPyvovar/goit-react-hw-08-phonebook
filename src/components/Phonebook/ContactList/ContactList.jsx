@@ -20,7 +20,7 @@ export const ContactList = () => {
         if (!filter) {
             return items;
         }
-        
+        console.log(items)
         return items.filter(({name}) => name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
     }
 

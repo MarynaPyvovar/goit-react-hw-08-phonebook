@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import { getAuth } from 'redux/auth/authSlice';
 import { registerUser } from 'redux/auth/authOperations';
@@ -34,24 +35,22 @@ const RegisterForm = () => {
 
     const dispatch = useDispatch();
     const { isLoading } = useSelector(getAuth);
-
-    const registerNewUser = (name, email, password) => {
-        dispatch(registerUser({name, email, password}));
-    }
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        registerNewUser(name, email, password);
+        dispatch(registerUser({ name: name, email: email, password: password }));
+        navigate('/contacts')
 
         setName('')
         setEmail('')
         setPassword('')
     }
 
-    const nameId = nanoid();
-    const emailId = nanoid();
-    const passwordId = nanoid();
+    const nameId = useMemo(()=> nanoid(), []);
+    const emailId = useMemo(()=> nanoid(), []);
+    const passwordId = useMemo(()=> nanoid(), []);
     
     return (<form onSubmit={handleSubmit} className={css.insertWrapper}>
         <label className={css.label} htmlFor={nameId}>Name</label>

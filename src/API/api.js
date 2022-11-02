@@ -6,36 +6,33 @@ const instance = axios.create({
   baseURL: BASE_URL,
 });
 
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
-
-export async function register() {
-  const data = await instance.post('/users/singup');
-  token.set(data.token);
-  return data.data;
+export async function register(signupData) {
+  const { data } = await instance.post('/users/signup', signupData);
+  instance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+  return data;
 }
 
-export async function login() {
-  const data = await instance.post('/users/login');
-  token.set(data.token);
+export async function login(signupData) {
+  const { data } = await instance.post('/users/login', signupData);
+  instance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+  return data;
+}
+
+export async function fetchCurrent(token) {
+  const data = await instance.get('/users/current');
+  instance.defaults.headers.common.Authorization = `Bearer ${token}`;
   return data.data;
 }
 
 export async function logout() {
   const data = await instance.post('/users/logout');
-  token.unset();
-  return data.data;
+  instance.defaults.headers.common.authorization = '';
+  return data;
 }
 
 export async function fetchContactsFromAPI() {
   const data = await instance.get('/contacts');
-
+  console.log(data);
   return data.data;
 }
 

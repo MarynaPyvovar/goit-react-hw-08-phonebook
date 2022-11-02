@@ -18,8 +18,14 @@ export const UserMenu = () => {
     return (
         <>
             {isLoggedIn ?
-            <div className={css.userWrapper}><p className={css.greeting}>{`Welcome, ${user.name}!`}</p><button className={css.link} type='button' onClick={onLogoutClick}>Log Out</button></div> :
-            <div className={css.menuWrapper}><NavLink className={css.link} to='/register'>Sign Up</NavLink><NavLink className={css.link} to='/login'>Log In</NavLink></div>
+                <div className={css.userWrapper}>
+                    <p className={css.greeting}>{`Welcome, ${user.name}!`}</p>
+                    <button className={css.link} type='button' onClick={onLogoutClick}>Log Out</button>
+                </div> :
+                <div className={css.menuWrapper}>
+                    <NavLink className={css.link} to='/register'>Sign Up</NavLink>
+                    <NavLink className={css.link} to='/login'>Log In</NavLink>
+                </div>
             }
     </>
     )

@@ -1,6 +1,3 @@
-https://mockapi.io/projects/63565caa9243cf412f82b481 - API
-
-
 **Read in other languages: [Русский](README.md), [Polska](README.pl.md),
 [English](README.en.md), [Spanish](README.es.md).**
 
