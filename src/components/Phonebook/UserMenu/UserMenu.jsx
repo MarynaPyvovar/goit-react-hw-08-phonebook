@@ -15,18 +15,23 @@ export const UserMenu = () => {
         navigate('/login')
     }
 
+    const getClassName = ({isActive}) => {
+    return isActive ? `${css.link} ${css.active}` : css.link;
+}
+
     return (
-        <>
+        <nav className={css.navWrapper}>
+            {isLoggedIn && <NavLink className={css.link} to='/contacts'>Contacts</NavLink>}
             {isLoggedIn ?
                 <div className={css.userWrapper}>
                     <p className={css.greeting}>{`Welcome, ${user.name}!`}</p>
                     <button className={css.link} type='button' onClick={onLogoutClick}>Log Out</button>
                 </div> :
                 <div className={css.menuWrapper}>
-                    <NavLink className={css.link} to='/register'>Sign Up</NavLink>
-                    <NavLink className={css.link} to='/login'>Log In</NavLink>
+                    <NavLink className={getClassName} to='/register'>Sign Up</NavLink>
+                    <NavLink className={getClassName} to='/login'>Log In</NavLink>
                 </div>
             }
-    </>
+        </nav>
     )
 }

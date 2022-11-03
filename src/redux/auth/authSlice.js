@@ -12,6 +12,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isLoading: false,
+  isLoadingUser: false,
   error: null,
 };
 
@@ -22,12 +23,12 @@ export const authSlice = createSlice({
   extraReducers: {
     [registerUser.pending](state) {
       state.isLoading = true;
+      state.error = null;
     },
     [registerUser.fulfilled](state, { payload }) {
       state.isLoading = false;
       state.isLoggedIn = true;
       state.token = payload.token;
-      state.error = null;
       state.user = payload.user;
       toast.success('Successfully registered!');
     },
@@ -38,12 +39,12 @@ export const authSlice = createSlice({
     },
     [loginUser.pending](state) {
       state.isLoading = true;
+      state.error = null;
     },
     [loginUser.fulfilled](state, { payload }) {
       state.isLoading = false;
       state.isLoggedIn = true;
       state.token = payload.token;
-      state.error = null;
       state.user = payload.user;
       toast.success('Successfully logged in!');
     },
@@ -54,11 +55,13 @@ export const authSlice = createSlice({
     },
     [logoutUser.pending](state) {
       state.isLoading = true;
+      state.error = null;
     },
     [logoutUser.fulfilled](state) {
       state.isLoading = false;
       state.isLoggedIn = false;
-      state = initialState;
+      state.user = { name: null, email: null };
+      state.token = null;
       toast.success('Successfully logged out! Waiting for you to come back!');
     },
     [logoutUser.rejected](state, { payload }) {
@@ -67,15 +70,16 @@ export const authSlice = createSlice({
       toast.error('Something is wrong, try again later!');
     },
     [fetchCurrentUser.pending](state) {
-      state.isLoading = true;
+      state.isLoadingUser = true;
+      state.error = null;
     },
     [fetchCurrentUser.fulfilled](state, { payload }) {
-      state.isLoading = false;
+      state.isLoadingUser = false;
       state.isLoggedIn = true;
-      state.user = { ...payload };
+      state.user = payload;
     },
     [fetchCurrentUser.rejected](state, { payload }) {
-      state.isLoading = false;
+      state.isLoadingUser = false;
       state.error = payload;
     },
   },

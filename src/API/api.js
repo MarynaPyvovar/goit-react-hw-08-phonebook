@@ -6,6 +6,15 @@ const instance = axios.create({
   baseURL: BASE_URL,
 });
 
+const setToken = token => {
+  if (token) {
+    return (instance.defaults.headers.common.authorization = `Bearer ${token}`);
+  }
+  instance.defaults.headers.common.authorization = '';
+};
+
+// user
+
 export async function register(signupData) {
   const { data } = await instance.post('/users/signup', signupData);
   instance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
@@ -19,26 +28,31 @@ export async function login(signupData) {
 }
 
 export async function fetchCurrent(token) {
-  const data = await instance.get('/users/current');
-  instance.defaults.headers.common.Authorization = `Bearer ${token}`;
-  return data.data;
+  try {
+    setToken(token);
+    const data = await instance.get('/users/current');
+    return data.data;
+  } catch (error) {
+    setToken();
+    throw error;
+  }
 }
 
 export async function logout() {
   const data = await instance.post('/users/logout');
-  instance.defaults.headers.common.authorization = '';
-  return data;
+  return data.data;
 }
+
+// contacts
 
 export async function fetchContactsFromAPI() {
   const data = await instance.get('/contacts');
-  console.log(data);
   return data.data;
 }
 
 export async function addContactToAPI(newContact) {
   const data = await instance.post('/contacts', newContact);
-  return data.data;
+  return data.result;
 }
 
 export async function removeContactFromAPI(id) {

@@ -61,7 +61,7 @@ const RegisterForm = () => {
             value={name}
             onChange={handleChange}
             required
-            placeholder='UserName'
+            placeholder='User_Name'
             className={css.input} />
         <label className={css.label} htmlFor={emailId}>Email</label>
         <input
@@ -81,7 +81,7 @@ const RegisterForm = () => {
             value={password}
             onChange={handleChange}
             required
-            placeholder='Your password'
+            placeholder='min 7 symbols'
             className={css.input} />
         {!isLoading ? <button type='submit' className={css.button}>Sign Up</button> : <Loader />}
     </form>)

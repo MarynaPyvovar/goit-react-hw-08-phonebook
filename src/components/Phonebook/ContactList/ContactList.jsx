@@ -13,7 +13,7 @@ export const ContactList = () => {
         dispatch(fetchContacts());
     }, [dispatch]);
 
-    const {items, error, isLoading} = useSelector(getContacts);
+    const { items, error, isLoading } = useSelector(getContacts);
     const filter = useSelector(getFilter);
 
     const getFilteredContacts = () => {
@@ -27,10 +27,9 @@ export const ContactList = () => {
     const contactsToRender = getFilteredContacts()
 
     return <ul className={css.list}>
-        {isLoading && <div>Loading...</div>}
+        {isLoading ? <div>Loading...</div> : 
+        contactsToRender.map(item =>
+            <ContactItem key={item.id} data={item} />)}
         {error && <div>Something went wrong, please, try again</div>}
-        {contactsToRender.map(item =>
-            <ContactItem key={item.id} data={item} />)
-        }
     </ul>
 }

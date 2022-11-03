@@ -1,25 +1,28 @@
+.navWrapper {
+    display: flex;
+    align-items: center;
+    padding: 20px 20px 20px 0;
+}
+
 .userWrapper {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     width: 100%;
-    padding: 20px;
+    
 }
 
 .menuWrapper {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    padding: 20px 0;
+    justify-content: space-around;
+    width: 325px;
 }
 
 .link {
     display: block;
-    width: 80px;
+    width: 100px;
     padding: 5px;
-    margin-left: 35px;
-    margin-right: 35px;
     text-decoration: none;
     text-align: center;
     color: black;
@@ -32,5 +35,5 @@
 }
 
 .greeting {
-    margin: 0;
+    margin: 0 20px 0 auto;
 }

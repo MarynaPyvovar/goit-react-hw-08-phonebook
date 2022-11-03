@@ -3,7 +3,7 @@ import { fetchContacts, addContact, removeContact } from './contactsOperation';
 import { toast } from 'react-toastify';
 
 const initialState = {
-  items: [{ id: '12', name: 'qweq', number: '123-12-12' }],
+  items: [],
   isLoading: false,
   addingLoader: false,
   error: null,
