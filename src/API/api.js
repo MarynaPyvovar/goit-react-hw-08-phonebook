@@ -52,7 +52,7 @@ export async function fetchContactsFromAPI() {
 
 export async function addContactToAPI(newContact) {
   const data = await instance.post('/contacts', newContact);
-  return data.result;
+  return data.data;
 }
 
 export async function removeContactFromAPI(id) {

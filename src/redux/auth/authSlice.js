@@ -35,7 +35,7 @@ export const authSlice = createSlice({
     [registerUser.rejected](state, { payload }) {
       state.isLoading = false;
       state.error = payload;
-      toast.error('Something is wrong, try another password!');
+      toast.error('Something is wrong, try again!');
     },
     [loginUser.pending](state) {
       state.isLoading = true;

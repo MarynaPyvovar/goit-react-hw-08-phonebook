@@ -1,6 +1,5 @@
 import { useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import { getAuth } from 'redux/auth/authSlice';
 import { registerUser } from 'redux/auth/authOperations';
@@ -35,13 +34,11 @@ const RegisterForm = () => {
 
     const dispatch = useDispatch();
     const { isLoading } = useSelector(getAuth);
-    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         dispatch(registerUser({ name: name, email: email, password: password }));
-        navigate('/contacts')
 
         setName('')
         setEmail('')

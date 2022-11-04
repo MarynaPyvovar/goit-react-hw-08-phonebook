@@ -8,13 +8,12 @@ import css from '../ContactList/ContactList.module.css';
 
 export const ContactList = () => {
     const dispatch = useDispatch();
+    const { items, error, isLoading } = useSelector(getContacts);
+    const filter = useSelector(getFilter);
 
     useEffect(() => {
         dispatch(fetchContacts());
     }, [dispatch]);
-
-    const { items, error, isLoading } = useSelector(getContacts);
-    const filter = useSelector(getFilter);
 
     const getFilteredContacts = () => {
         if (!filter) {

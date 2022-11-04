@@ -5,6 +5,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchCurrentUser } from "redux/auth/authOperations";
 import { getAuth } from "redux/auth/authSlice";
+import {PrivateRoute} from "./Routes/PrivateRoute";
+import {PublicRoute} from "./Routes/PublicRoute";
 
 import { Layout } from "./Phonebook/Layout/Layout";
 import { LoaderRoute } from "./Phonebook/Loader/Loader";
@@ -27,9 +29,9 @@ export const App = () => {
       <Routes>
         <Route path='/' element={<Layout />}>
           <Route index element={<RegisterForm />} />
-          <Route path='/register' element={<RegisterForm />} />
-          <Route path='/login' element={<LoginForm />} />
-          <Route path='/contacts' element={<Phonebook />} />
+          <Route path="/register" element={<PublicRoute><RegisterForm /></PublicRoute>} />
+          <Route path="/login" element={<PublicRoute><LoginForm /></PublicRoute>} />
+          <Route path="/contacts" element={<PrivateRoute><Phonebook /></PrivateRoute>} />
           <Route path='*' element={<PageNotFound />} />
         </Route>
       </Routes>
