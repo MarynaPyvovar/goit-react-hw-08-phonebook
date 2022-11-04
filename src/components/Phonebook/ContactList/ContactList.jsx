@@ -8,22 +8,24 @@ import css from '../ContactList/ContactList.module.css';
 
 export const ContactList = () => {
     const dispatch = useDispatch();
-    const { items, error, isLoading } = useSelector(getContacts);
-    const filter = useSelector(getFilter);
 
     useEffect(() => {
         dispatch(fetchContacts());
     }, [dispatch]);
 
+    const { items, error, isLoading } = useSelector(getContacts);
+    const filter = useSelector(getFilter);
+
     const getFilteredContacts = () => {
         if (!filter) {
             return items;
         }
-        console.log(items)
+        
         return items.filter(({name}) => name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
     }
 
     const contactsToRender = getFilteredContacts()
+console.log('contactsToRender', contactsToRender)
 
     return <ul className={css.list}>
         {isLoading ? <div>Loading...</div> : 

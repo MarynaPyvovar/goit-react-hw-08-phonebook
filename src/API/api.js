@@ -6,40 +6,51 @@ const instance = axios.create({
   baseURL: BASE_URL,
 });
 
-const setToken = token => {
+const setToken = {
+  set(token) {
+    instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    instance.defaults.headers.common.Authorization = '';
+  },
+};
+
+const setCurrentToken = token => {
   if (token) {
-    return (instance.defaults.headers.common.authorization = `Bearer ${token}`);
+    setToken.set(token);
+    return;
   }
-  instance.defaults.headers.common.authorization = '';
+  setToken.unset();
 };
 
 // user
 
 export async function register(signupData) {
   const { data } = await instance.post('/users/signup', signupData);
-  instance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+  setToken.set(data.token);
   return data;
 }
 
 export async function login(signupData) {
   const { data } = await instance.post('/users/login', signupData);
-  instance.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+  setToken.set(data.token);
   return data;
 }
 
 export async function fetchCurrent(token) {
   try {
-    setToken(token);
+    setCurrentToken(token);
     const data = await instance.get('/users/current');
     return data.data;
   } catch (error) {
-    setToken();
+    setCurrentToken();
     throw error;
   }
 }
 
 export async function logout() {
   const data = await instance.post('/users/logout');
+  setToken.unset();
   return data.data;
 }
 
