@@ -28,7 +28,6 @@ export const App = () => {
       {isLoadingUser ? <LoaderRoute /> : 
       <Routes>
         <Route path='/' element={<Layout />}>
-          <Route index element={<RegisterForm />} />
           <Route path="/register" element={<PublicRoute><RegisterForm /></PublicRoute>} />
           <Route path="/login" element={<PublicRoute><LoginForm /></PublicRoute>} />
           <Route path="/contacts" element={<PrivateRoute><Phonebook /></PrivateRoute>} />

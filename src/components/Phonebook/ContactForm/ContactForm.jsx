@@ -34,18 +34,14 @@ export const ContactForm = () => {
         return items.find((item) => item.name.toLocaleLowerCase() === name.toLocaleLowerCase() || item.number === number);
     }
 
-    const addContactToList = (name, number) => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
         if (contactAlreadyExists(name, number)) {
             return toast.error(`${name} ${number} is already in Phonebook`)
         }
 
-        dispatch(addContact({name, number }));
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        addContactToList(name, number);
+        dispatch(addContact({name, number}));
 
         setName('')
         setNumber('')
