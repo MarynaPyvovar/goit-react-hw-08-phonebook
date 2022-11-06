@@ -25,7 +25,6 @@ export const ContactList = () => {
     }
 
     const contactsToRender = getFilteredContacts()
-console.log('contactsToRender', contactsToRender)
 
     return <ul className={css.list}>
         {isLoading ? <div>Loading...</div> : 

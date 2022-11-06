@@ -33,18 +33,12 @@ const RegisterForm = () => {
     }
 
     const dispatch = useDispatch();
-    const { isLoading, isLoggedIn } = useSelector(getAuth);
+    const { isLoading } = useSelector(getAuth);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         dispatch(registerUser({ name: name, email: email, password: password }));
-
-        if (isLoggedIn) {
-            setName('')
-            setEmail('')
-            setPassword('')
-        }
     }
 
     const nameId = useMemo(()=> nanoid(), []);

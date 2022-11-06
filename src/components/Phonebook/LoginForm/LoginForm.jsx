@@ -27,17 +27,12 @@ const LoginForm = () => {
     }
 
     const dispatch = useDispatch();
-    const { isLoading, isLoggedIn } = useSelector(getAuth);
+    const { isLoading } = useSelector(getAuth);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         dispatch(loginUser({ email: email, password: password }));
-
-        if (isLoggedIn) {
-            setEmail('')
-            setPassword('')
-        }
     }
 
     const emailId = useMemo(()=> nanoid(), []);
