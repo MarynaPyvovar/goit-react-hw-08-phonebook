@@ -1,0 +1,14 @@
+.wrapper {
+    padding: 30px 30px;
+}
+
+.title {
+    text-align: center;
+    margin: 0 0 20px 0;
+    color: #2187ab;
+}
+
+.text {
+    margin: 0 0 10px 0;
+    color: #134b5f;
+}
