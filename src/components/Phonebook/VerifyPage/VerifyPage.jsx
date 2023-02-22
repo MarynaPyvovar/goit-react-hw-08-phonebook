@@ -8,15 +8,14 @@ const VerifyPage = () => {
   const dispatch = useDispatch();
   const { verificationToken } = useParams();
 
-    useEffect(() => {
-      console.log(verificationToken)
-        dispatch(verifyUser(verificationToken));
+  useEffect(() => {
+    dispatch(verifyUser(verificationToken));
   }, [dispatch, verificationToken]);
 
     return (
         <div>
             <p className={css.text}>
-          Youe email is verified! Now you can login
+          Your email is verified! Now you can login
         </p>
         </div>
         
