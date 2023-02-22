@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[785],{6785:function(e,n,t){t.r(n),t.d(n,{default:function(){return s}});var i=t(2791),o=t(9434),r=t(7689),c=t(5822),a="VerifyPage_text__KVQsj",u=t(3329),s=function(){var e=(0,o.I0)(),n=(0,r.UO)().verificationToken;return(0,i.useEffect)((function(){console.log(n),e((0,c.A9)(n))}),[e,n]),(0,u.jsx)("div",{children:(0,u.jsx)("p",{className:a,children:"Youe email is verified! Now you can login"})})}}}]);
-//# sourceMappingURL=785.9d4af1e4.chunk.js.map
