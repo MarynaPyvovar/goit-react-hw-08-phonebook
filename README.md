@@ -3,7 +3,8 @@ An application which everyone can use as personal phonebook
 
 ## Links
 - Repository https://github.com/MarynaPyvovar/goit-react-hw-08-phonebook
-- Page https://marynapyvovar.github.io/goit-react-hw-08-phonebook/
+- Live-page https://marynapyvovar.github.io/goit-react-hw-08-phonebook/
+- Back-end Repository https://github.com/MarynaPyvovar/PhoneBook-REST-API
 
 ## Available Commands
 
@@ -24,7 +25,7 @@ Builds the app for production to the `build` folder. It correctly bundles React 
 - Redux Toolkit
 - NPM
 - HTML
-- CSS
+- CSS modules
 
 ## Author
 
