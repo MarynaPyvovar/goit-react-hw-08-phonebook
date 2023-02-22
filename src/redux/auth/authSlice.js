@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 import {
   registerUser,
+  verifyUser,
   loginUser,
   logoutUser,
   fetchCurrentUser,
@@ -25,17 +25,23 @@ export const authSlice = createSlice({
       state.isLoading = true;
       state.error = null;
     },
-    [registerUser.fulfilled](state, { payload }) {
+    [registerUser.fulfilled](state) {
       state.isLoading = false;
-      state.isLoggedIn = true;
-      state.token = payload.token;
-      state.user = payload.user;
-      toast.success('Successfully registered!');
     },
     [registerUser.rejected](state, { payload }) {
       state.isLoading = false;
       state.error = payload;
-      toast.error('Something is wrong, try again!');
+    },
+    [verifyUser.pending](state) {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [verifyUser.fulfilled](state) {
+      state.isLoading = false;
+    },
+    [verifyUser.rejected](state, { payload }) {
+      state.isLoading = false;
+      state.error = payload;
     },
     [loginUser.pending](state) {
       state.isLoading = true;
@@ -46,12 +52,10 @@ export const authSlice = createSlice({
       state.isLoggedIn = true;
       state.token = payload.token;
       state.user = payload.user;
-      toast.success('Successfully logged in!');
     },
     [loginUser.rejected](state, { payload }) {
       state.isLoading = false;
       state.error = payload;
-      toast.error('Something is wrong, try again!');
     },
     [logoutUser.pending](state) {
       state.isLoading = true;
@@ -62,12 +66,10 @@ export const authSlice = createSlice({
       state.isLoggedIn = false;
       state.user = { name: null, email: null };
       state.token = null;
-      toast.success('Successfully logged out! Waiting for you to come back!');
     },
     [logoutUser.rejected](state, { payload }) {
       state.isLoading = false;
       state.error = payload;
-      toast.error('Something is wrong, try again later!');
     },
     [fetchCurrentUser.pending](state) {
       state.isLoadingUser = true;

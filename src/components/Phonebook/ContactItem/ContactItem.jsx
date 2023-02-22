@@ -7,7 +7,7 @@ import css from '../ContactItem/ContactItem.module.css'
 export const ContactItem = ({ data }) => {
     const dispatch = useDispatch();
 
-    const { id, name, number } = data;
+    const { _id, name, phone } = data;
 
     const onDeleteClick = (e, id) => {
         if (id === e.target.id) {
@@ -19,12 +19,12 @@ export const ContactItem = ({ data }) => {
     }
 
     return <li className={css.contactItem}>
-        <p className={css.contactText}>{name}: {number}</p>
-            <button type='button' className={css.contactBtn} id={id} onClick={(e) => onDeleteClick(e, id)}>Delete
+        <p className={css.contactText}>{name}: {phone}</p>
+            <button type='button' className={css.contactBtn} id={_id} onClick={(e) => onDeleteClick(e, _id)}>Delete
             </button>
     </li>
 }
 
 ContactItem.propTypes = {
-    data: PropTypes.objectOf(PropTypes.string.isRequired,),
+    data: PropTypes.object,
 }

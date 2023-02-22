@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, removeContact } from './contactsOperation';
-import { toast } from 'react-toastify';
 
 const initialState = {
   items: [],
@@ -31,9 +30,8 @@ export const contactsSlice = createSlice({
     },
     [addContact.fulfilled](state, { payload }) {
       state.addingLoader = false;
-      state.error = null;
       state.items.unshift(payload);
-      toast.success('ADDED !');
+      state.error = null;
     },
     [addContact.rejected](state, { payload }) {
       state.addingLoader = false;
@@ -41,8 +39,7 @@ export const contactsSlice = createSlice({
     },
     [removeContact.fulfilled](state, { payload }) {
       state.error = null;
-      state.items = state.items.filter(item => item.id !== payload);
-      toast.info('DELETED !');
+      state.items = state.items.filter(item => item._id !== payload);
     },
     [removeContact.rejected](state, { payload }) {
       state.error = payload;

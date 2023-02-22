@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://connections-api.herokuapp.com';
+const BASE_URL = 'https://phonebook-api-a3ip.onrender.com/api';
 
 const instance = axios.create({
   baseURL: BASE_URL,
@@ -26,13 +26,17 @@ const setCurrentToken = token => {
 // user
 
 export async function register(signupData) {
-  const { data } = await instance.post('/users/signup', signupData);
-  setToken.set(data.token);
+  const { data } = await instance.post('/auth/users/register', signupData);
+  return data;
+}
+
+export async function verify(token) {
+  const { data } = await instance.get(`/auth/users/verify/${token}`);
   return data;
 }
 
 export async function login(signupData) {
-  const { data } = await instance.post('/users/login', signupData);
+  const { data } = await instance.post('/auth/users/login', signupData);
   setToken.set(data.token);
   return data;
 }
@@ -40,7 +44,7 @@ export async function login(signupData) {
 export async function fetchCurrent(token) {
   try {
     setCurrentToken(token);
-    const data = await instance.get('/users/current');
+    const data = await instance.get('/auth/users/current');
     return data.data;
   } catch (error) {
     setCurrentToken();
@@ -49,7 +53,7 @@ export async function fetchCurrent(token) {
 }
 
 export async function logout() {
-  const data = await instance.post('/users/logout');
+  const data = await instance.post('/auth/users/logout');
   setToken.unset();
   return data.data;
 }
@@ -57,13 +61,13 @@ export async function logout() {
 // contacts
 
 export async function fetchContactsFromAPI() {
-  const data = await instance.get('/contacts');
-  return data.data;
+  const { data } = await instance.get('/contacts');
+  return data;
 }
 
 export async function addContactToAPI(newContact) {
-  const data = await instance.post('/contacts', newContact);
-  return data.data;
+  const { data } = await instance.post('/contacts', newContact);
+  return data;
 }
 
 export async function removeContactFromAPI(id) {

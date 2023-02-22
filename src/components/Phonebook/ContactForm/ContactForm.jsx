@@ -31,7 +31,7 @@ export const ContactForm = () => {
     const {items, addingLoader} = useSelector(getContacts);
 
     const contactAlreadyExists = (name, number) => {
-        return items.find((item) => item.name.toLocaleLowerCase() === name.toLocaleLowerCase() || item.number === number);
+        return items?.find((item) => item.name.toLocaleLowerCase() === name.toLocaleLowerCase() || item.number === number);
     }
 
     const handleSubmit = (e) => {
@@ -41,7 +41,7 @@ export const ContactForm = () => {
             return toast.error(`${name} ${number} is already in Phonebook`)
         }
 
-        dispatch(addContact({name, number}));
+        dispatch(addContact({ name: name, phone: number }));
 
         setName('')
         setNumber('')
